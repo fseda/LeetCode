@@ -9,6 +9,10 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+#include <iostream>
+using namespace std;
+
 struct TreeNode {
   int val;
   TreeNode *left;
@@ -21,10 +25,16 @@ struct TreeNode {
 class Solution {
   public:
     bool checkTree(TreeNode* root) {
-      return (*root).val == (*root).left + (*root).right;
+      return (*root).val == (*root).right->val + root->left->val; // Both (*). and -> are correct
     }
 };
 
-TreeNode tn = { 1, { 1 }, { 1 }}
+int main() {
+  TreeNode lc = { 1 };
+  TreeNode rc = { 1 };
 
-cout << tn.val << endl;
+  TreeNode tn = { 2, &lc, &rc };
+
+  Solution sol;
+  cout << sol.checkTree(&tn) << endl;
+}
